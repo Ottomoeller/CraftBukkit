@@ -500,9 +500,7 @@ public abstract class Entity {
 
             List list = this.world.getCubes(this, this.boundingBox.a(d0, d1, d2));
 
-            for (int i = 0; i < list.size(); ++i) {
-                d1 = ((AxisAlignedBB) list.get(i)).b(this.boundingBox, d1);
-            }
+            d1 = setD1(d1, list);
 
             this.boundingBox.d(0.0D, d1, 0.0D);
             if (!this.J && d7 != d1) {
@@ -554,9 +552,7 @@ public abstract class Entity {
                 this.boundingBox.d(axisalignedbb);
                 list = this.world.getCubes(this, this.boundingBox.a(d6, d1, d8));
 
-                for (k = 0; k < list.size(); ++k) {
-                    d1 = ((AxisAlignedBB) list.get(k)).b(this.boundingBox, d1);
-                }
+                d1 = setD1(d1, list);
 
                 this.boundingBox.d(0.0D, d1, 0.0D);
                 if (!this.J && d7 != d1) {
@@ -733,6 +729,13 @@ public abstract class Entity {
 
             this.world.methodProfiler.b();
         }
+    }
+
+    private double setD1(double d1, List list) {
+        for (int i = 0; i < list.size(); ++i) {
+            d1 = ((AxisAlignedBB) list.get(i)).b(this.boundingBox, d1);
+        }
+        return d1;
     }
 
     protected String G() {
