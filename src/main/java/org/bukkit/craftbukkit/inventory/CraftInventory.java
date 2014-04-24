@@ -335,37 +335,42 @@ public class CraftInventory implements Inventory {
             ItemStack item = items[i];
             int toDelete = item.getAmount();
 
-            while (true) {
-                int first = first(item, false);
-
-                // Drat! we don't have this type in the inventory
-                if (first == -1) {
-                    item.setAmount(toDelete);
-                    leftover.put(i, item);
-                    break;
-                } else {
-                    ItemStack itemStack = getItem(first);
-                    int amount = itemStack.getAmount();
-
-                    if (amount <= toDelete) {
-                        toDelete -= amount;
-                        // clear the slot, all used up
-                        clear(first);
-                    } else {
-                        // split the stack and store
-                        itemStack.setAmount(amount - toDelete);
-                        setItem(first, itemStack);
-                        toDelete = 0;
-                    }
-                }
-
+            checkInventory(item, toDelete, i, leftover);
+            
                 // Bail when done
                 if (toDelete <= 0) {
                     break;
                 }
             }
-        }
         return leftover;
+    }
+    
+    
+    public void checkInventory(ItemStack item, int toDelete, int i, HashMap<Integer, ItemStack> leftover){
+        while (true) {
+            int first = first(item, false);
+
+            // Drat! we don't have this type in the inventory
+            if (first == -1) {
+               item.setAmount(toDelete);
+               leftover.put(i, item);
+               break;
+            } else {
+               ItemStack itemStack = getItem(first);
+               int amount = itemStack.getAmount();
+
+               if (amount <= toDelete) {
+                   toDelete -= amount;
+                   // clear the slot, all used up
+                   clear(first);
+               } else {
+                   // split the stack and store
+                   itemStack.setAmount(amount - toDelete);
+                   setItem(first, itemStack);
+                   toDelete = 0;
+               }
+            }
+        }
     }
 
     private int getMaxItemStack() {

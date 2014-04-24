@@ -25,7 +25,7 @@ public class MultipleCommandAliasHelpTopic extends HelpTopic {
             if (i != 0) {
                 sb.append(ChatColor.GOLD + " > " + ChatColor.WHITE);
             }
-            sb.append("/");
+            sb.append('/');
             sb.append(alias.getCommands()[i].getLabel());
         }
         shortText = sb.toString();
