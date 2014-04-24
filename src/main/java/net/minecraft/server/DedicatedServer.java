@@ -61,7 +61,9 @@ public class DedicatedServer extends MinecraftServer implements IMinecraftServer
             }
         }
 
-        new Thread(new org.bukkit.craftbukkit.util.TerminalConsoleWriterThread(System.out, this.reader)).start();
+        Thread consoleWriterStartThread = new Thread(new org.bukkit.craftbukkit.util.TerminalConsoleWriterThread(System.out, this.reader));
+        
+        consoleWriterStartThread.start();
 
         System.setOut(new PrintStream(new LoggerOutputStream(logger, Level.INFO), true));
         System.setErr(new PrintStream(new LoggerOutputStream(logger, Level.WARN), true));
