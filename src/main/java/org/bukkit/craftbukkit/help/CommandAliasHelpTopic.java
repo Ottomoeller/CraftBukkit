@@ -24,7 +24,7 @@ public class CommandAliasHelpTopic extends HelpTopic {
         StringBuilder sb = new StringBuilder(shortText);
         HelpTopic aliasForTopic = helpMap.getHelpTopic(aliasFor);
         if (aliasForTopic != null) {
-            sb.append('\n');
+            sb.append("\n");
             sb.append(aliasForTopic.getFullText(forWho));
         }
         return sb.toString();
