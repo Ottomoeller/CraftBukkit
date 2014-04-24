@@ -179,16 +179,8 @@ public class CraftBlockState implements BlockState {
         if (this.world != other.world && (this.world == null || !this.world.equals(other.world))) {
             return false;
         }
-        if (this.x != other.x) {
-            return false;
-        }
-        if (this.y != other.y) {
-            return false;
-        }
-        if (this.z != other.z) {
-            return false;
-        }
-        if (this.type != other.type) {
+        
+        if (this.x != other.x || this.y != other.y || this.z != other.z || this.type != other.type) {
             return false;
         }
         if (this.data != other.data && (this.data == null || !this.data.equals(other.data))) {
