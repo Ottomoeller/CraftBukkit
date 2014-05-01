@@ -197,31 +197,31 @@ public class CraftBlockState implements BlockState {
         return true;
     }
 
-        @Override
-        public int hashCode() {
-            int hash = 7;
-            hash = 73 * hash + (this.world != null ? this.world.hashCode() : 0);
-            hash = 73 * hash + this.x;
-            hash = 73 * hash + this.y;
-            hash = 73 * hash + this.z;
-            hash = 73 * hash + this.type;
-            hash = 73 * hash + (this.data != null ? this.data.hashCode() : 0);
-            return hash;
-        }
-
-        public void setMetadata(String metadataKey, MetadataValue newMetadataValue) {
-            chunk.getCraftWorld().getBlockMetadata().setMetadata(getBlock(), metadataKey, newMetadataValue);
-        }
-
-        public List<MetadataValue> getMetadata(String metadataKey) {
-            return chunk.getCraftWorld().getBlockMetadata().getMetadata(getBlock(), metadataKey);
-        }
-
-        public boolean hasMetadata(String metadataKey) {
-            return chunk.getCraftWorld().getBlockMetadata().hasMetadata(getBlock(), metadataKey);
-        }
-
-        public void removeMetadata(String metadataKey, Plugin owningPlugin) {
-            chunk.getCraftWorld().getBlockMetadata().removeMetadata(getBlock(), metadataKey, owningPlugin);
-        }
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 73 * hash + (this.world != null ? this.world.hashCode() : 0);
+        hash = 73 * hash + this.x;
+        hash = 73 * hash + this.y;
+        hash = 73 * hash + this.z;
+        hash = 73 * hash + this.type;
+        hash = 73 * hash + (this.data != null ? this.data.hashCode() : 0);
+        return hash;
     }
+
+    public void setMetadata(String metadataKey, MetadataValue newMetadataValue) {
+        chunk.getCraftWorld().getBlockMetadata().setMetadata(getBlock(), metadataKey, newMetadataValue);
+    }
+
+    public List<MetadataValue> getMetadata(String metadataKey) {
+        return chunk.getCraftWorld().getBlockMetadata().getMetadata(getBlock(), metadataKey);
+    }
+
+    public boolean hasMetadata(String metadataKey) {
+        return chunk.getCraftWorld().getBlockMetadata().hasMetadata(getBlock(), metadataKey);
+    }
+
+    public void removeMetadata(String metadataKey, Plugin owningPlugin) {
+        chunk.getCraftWorld().getBlockMetadata().removeMetadata(getBlock(), metadataKey, owningPlugin);
+    }
+}

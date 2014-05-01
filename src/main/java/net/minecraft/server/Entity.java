@@ -499,7 +499,7 @@ public abstract class Entity {
             }
 
             List list = this.world.getCubes(this, this.boundingBox.a(d0, d1, d2));
-            
+
             for (int i = 0; i < list.size(); ++i) {
                 d1 = ((AxisAlignedBB) list.get(i)).b(this.boundingBox, d1);
             }

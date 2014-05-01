@@ -358,16 +358,15 @@ public class CraftInventory implements Inventory {
                         toDelete = 0;
                     }
                 }
-            }
 
-            // Bail when done
-            if (toDelete <= 0) {
-                break;
+                // Bail when done
+                if (toDelete <= 0) {
+                    break;
+                }
             }
         }
         return leftover;
     }
-
 
     private int getMaxItemStack() {
         return getInventory().getMaxStackSize();
