@@ -62,31 +62,40 @@ public class CraftInventoryCustom extends CraftInventory {
         }
 
         public ItemStack splitStack(int i, int j) {
-            ItemStack stack = this.getItem(i);
-            ItemStack result;
-            if (stack == null) return null;
-            if (stack.count <= j) {
-                this.setItem(i, null);
-                result = stack;
-            } else {
-                result = CraftItemStack.copyNMSStack(stack, j);
-                stack.count -= j;
-            }
+            ItemStack result = ItemStackSet(i, j);
             this.update();
             return result;
         }
 
-        public ItemStack splitWithoutUpdate(int i) {
+        private ItemStack ItemStackSet(int i, int j) {
             ItemStack stack = this.getItem(i);
-            ItemStack result;
+            ItemStack result = null;
             if (stack == null) return null;
-            if (stack.count <= 1) {
-                this.setItem(i, null);
-                result = stack;
-            } else {
-                result = CraftItemStack.copyNMSStack(stack, 1);
-                stack.count -= 1;
+            if(j == Integer.MAX_VALUE){
+                if (stack.count <= 1) {
+                    this.setItem(i, null);
+                    result = stack;
+                } else {
+                    result = CraftItemStack.copyNMSStack(stack, 1);
+                    stack.count -= 1;
+                }
             }
+            else {
+                if (stack.count <= j) {
+                    this.setItem(i, null);
+                    result = stack;
+                } else {
+                    result = CraftItemStack.copyNMSStack(stack, j);
+                    stack.count -= j;
+                }
+            }
+            return result;
+
+        }
+
+        public ItemStack splitWithoutUpdate(int i) {
+            int j = Integer.MAX_VALUE;
+            ItemStack result = ItemStackSet(i, j);
             return result;
         }
 
