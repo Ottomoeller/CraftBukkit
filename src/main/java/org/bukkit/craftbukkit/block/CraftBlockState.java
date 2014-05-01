@@ -175,6 +175,10 @@ public class CraftBlockState implements BlockState {
         if (getClass() != obj.getClass()) {
             return false;
         }
+        return blockStateEquals(obj);
+    }
+    
+    public boolean blockStateEquals(Object obj){
         final CraftBlockState other = (CraftBlockState) obj;
         if (this.world != other.world && (this.world == null || !this.world.equals(other.world))) {
             return false;
